@@ -20,6 +20,21 @@
 
 3) It uses spaced repetition, the same technique behind top memory apps like Anki. Problems you struggle with come back sooner. Problems you know well are spaced out over weeks or months.
 
+## Installation
+
+1. Download this repo — click the green **Code** button above, then **Download ZIP**, and extract the folder anywhere on your computer
+2. Open Chrome and go to `chrome://extensions`
+
+![Extensions page](Assets/install-extensions-page.png)
+
+3. Turn on **Developer Mode** using the toggle in the top right corner
+4. Click **Load unpacked** and select the `leetrecall` folder you just extracted
+5. The LeetRecall icon will appear in your Chrome toolbar
+
+![Toolbar icon](Assets/install-icon-toolbar.png)
+
+> **Note:** After loading the extension, close and reopen your browser once. LeetRecall registers properly only after a fresh browser start — without this, it may not track your submissions correctly.
+
 
 ## How It Works
 
@@ -56,21 +71,6 @@ The full dashboard shows every problem you've tracked — next review date, acce
 You're all caught up. Keep solving!
 
 ![Popup](Assets/Initial_LeetRecall_popup.png)
-
-## Installation
-
-1. Download this repo — click the green **Code** button above, then **Download ZIP**, and extract the folder anywhere on your computer
-2. Open Chrome and go to `chrome://extensions`
-
-![Extensions page](Assets/install-extensions-page.png)
-
-3. Turn on **Developer Mode** using the toggle in the top right corner
-4. Click **Load unpacked** and select the `leetrecall` folder you just extracted
-5. The LeetRecall icon will appear in your Chrome toolbar
-
-![Toolbar icon](Assets/install-icon-toolbar.png)
-
-> **Note:** After loading the extension, close and reopen your browser once. LeetRecall registers properly only after a fresh browser start — without this, it may not track your submissions correctly.
 
 
 ## Using LeetRecall

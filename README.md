@@ -1,70 +1,144 @@
 # LeetRecall
 
-LeetRecall is a Chrome extension that helps you actually remember the LeetCode problems you solve. It tracks your submissions automatically and tells you when to review each problem again, so you stop re-solving problems you've already done from scratch.
+> A Chrome extension that turns your LeetCode grind into actual long-term memory.
 
-It uses spaced repetition — the same technique used by top memory apps like Anki. Problems you struggle with come back sooner. Problems you know well are spaced out over weeks or months.
+![Dashboard](Assets/LeetRecall_Dashboard.png)
 
-No manual input needed. Just solve problems like you normally would.
 
+## The Problem
+
+1) You solve a LeetCode problem today. Feel good about it. Come back two weeks later and you've completely forgotten how to approach it. You re-solve it from scratch. This cycle repeats forever.
+
+2) Most people treat LeetCode like a checklist- solve it once, move on. That's why they blank out in interviews on problems they've "already done."
+
+
+## The Goal
+
+1) Get mastery over LeetCode questions to prep for technical interviews. Push as many problems as possible to **Mastered** and keep as few as possible at **Novice**.
+
+2) LeetRecall tracks every problem you solve, detects how well you actually know it, and tells you exactly when to review it again, so you stop forgetting what you've already learned.
+
+3) It uses spaced repetition, the same technique behind top memory apps like Anki. Problems you struggle with come back sooner. Problems you know well are spaced out over weeks or months.
+
+
+## How It Works
+
+**1. Tracks automatically**
+
+LeetRecall listens silently to every submission you make on LeetCode. It captures whether you got Accepted or Wrong Answer, how long you took, how many attempts you needed, and whether you peeked at the Solutions or Editorial tab.
+
+![Tracks automatically](Assets/LeetCode_Problem-Extension.png)
+
+**2. Detects your proficiency per problem**
+
+After each submission it updates your proficiency level for that problem:
+
+Novice → Learning → Familiar → Proficient → Mastered
+
+![Proficiency levels](Assets/Proficiency.png)
+
+**3. Recommends smarter reviews**
+
+Your review queue prioritizes problems where proficiency is low. As you improve on a problem, it shows up less and less. The aim is maximum Mastered, minimum Novice.
+
+
+## What It Looks Like
+
+1) The popup shows your due problems for today. Click any problem to go straight to it on LeetCode.
+
+![Popup](Assets/Plugin_Snapshot.png)
+
+The full dashboard shows every problem you've tracked — next review date, acceptance rate, average solve time, proficiency badge, and status.
+
+![Dashboard on LeetCode](Assets/LeetCode_Problem-Extension.png)
+
+2) When you will solve all the problems in "Due Today" tab it would like-> Nothing due today!!
+You're all caught up. Keep solving!
+
+![Popup](Assets/Initial_LeetRecall_popup.png)
 
 ## Installation
 
-1. Download this repo — click the green Code button above, then Download ZIP, and extract the folder
-2. Open Chrome and go to chrome://extensions
-3. Turn on Developer Mode using the toggle in the top right corner
-4. Click Load unpacked and select the leetrecall folder you just extracted
+1. Download this repo — click the green **Code** button above, then **Download ZIP**, and extract the folder anywhere on your computer
+2. Open Chrome and go to `chrome://extensions`
+
+![Extensions page](Assets/install-extensions-page.png)
+
+3. Turn on **Developer Mode** using the toggle in the top right corner
+4. Click **Load unpacked** and select the `leetrecall` folder you just extracted
 5. The LeetRecall icon will appear in your Chrome toolbar
 
-That's it. No setup, no account, no configuration needed.
+![Toolbar icon](Assets/install-icon-toolbar.png)
+
+> **Note:** After loading the extension, close and reopen your browser once. LeetRecall registers properly only after a fresh browser start — without this, it may not track your submissions correctly.
 
 
-## How to use it
+## Using LeetRecall
 
-1) Once installed, just use LeetCode normally. Go to any problem, write your solution, and click Submit.
+**Solving problems**
 
-2) LeetRecall silently tracks everything in the background, whether you got Accepted or Wrong Answer, how long you took, how many attempts you needed, and whether you looked at the Solutions or Editorial tab.
+1) Just use LeetCode normally. Open any problem, write your solution, click Submit. LeetRecall handles everything silently in the background.
 
-3) After each submission it calculates when you should review that problem again and saves it automatically.
+2) One important thing — if you click the Solutions or Editorial tab on a problem, LeetRecall treats it as a failed attempt even if you submit correctly after. 
+The reasoning is simple: if you needed to look at the answer, you don't really know the problem yet. It schedules it for review tomorrow.
 
-4) **To see what's due for review today**, click the LeetRecall icon in your Chrome toolbar. The Due Today tab shows all problems scheduled for today. Click any problem title to go directly to it on LeetCode.
+**Checking what's due**
 
-5) **To see all your tracked problems**, click View All Problems in the popup. This opens the full dashboard where you can see every problem you've solved, your next scheduled date for each, proficiency badges, acceptance rates, and average solve times.
+Click the LeetRecall icon in your Chrome toolbar. The Due Today tab shows every problem scheduled for today or overdue. Click any problem title to go directly to it on LeetCode.
 
+**Full dashboard**
 
-## How the scheduling works
+Click **View All Problems** in the popup to open the dashboard. From here you can see all your tracked problems, filter by due/mastered, search by name, and see your full stats.
 
-After each submission, LeetRecall gives it a score from 0 to 5 based on your performance.
+![View All Problems Button](Assets/View_all_problems.png)
 
-A score of 5 means you solved it fast and clean on the first try. A score of 0 means you got a wrong answer, gave up, or viewed the solution. Everything in between depends on your time and number of attempts.
+**Daily reminders**
 
-Higher score = longer gap before the next review. Lower score = comes back tomorrow.
-
-If you view the Solutions or Editorial tab on a problem, it's automatically treated as a failed attempt regardless of whether you submitted correctly after. The idea is — if you needed to look at the answer, you don't really know it yet.
-
-
-## Proficiency levels
-
-As you successfully review a problem multiple times, its proficiency badge updates.
-
-1) Novice means you've never reviewed it. Learning means you're still getting familiar with it. 
-2) Familiar and Proficient mean you're reviewing it consistently well.
-3) Mastered means you've reviewed it many times with strong performance — it'll only come back every few months.
+At 9am every day, if you have problems due, you'll get a browser notification. Click it and the dashboard opens directly.
 
 
-## Daily reminders
+## Proficiency Levels
 
-At 9am every day, if you have problems due for review, you'll get a browser notification. Click it to open the dashboard directly.
+| Level | What it means |
+|---|---|
+| Novice | Never successfully reviewed |
+| Learning | Early stage, still building familiarity |
+| Familiar | Getting comfortable, a few solid reviews |
+| Proficient | Consistent good performance |
+| Mastered | Strong performance across many reviews — comes back every few months |
+
+
+## How the Scoring Works
+
+After each submission, LeetRecall gives it a quality score from 0 to 5.
+
+| Score | When |
+|---|---|
+| 5 | Solved in under 15 min, first attempt |
+| 4 | Solved in under 30 min, first attempt |
+| 3 | Solved with 1 to 2 attempts |
+| 2 | Solved with 3 to 4 attempts |
+| 0 | Wrong answer, viewed solution, or gave up |
+
+Higher score means a longer gap before the next review. Score of 0 means it comes back tomorrow regardless.
+
 
 
 ## Troubleshooting
 
-If the extension doesn't seem to be tracking a submission, try reloading it. Go to chrome://extensions, find LeetRecall, and click the reload icon. Then close and reopen the LeetCode tab.
+**Submissions not being tracked**
 
-To clear all your saved data and start fresh, open DevTools on any LeetCode page (press F12, go to Console) and run:
+Go to `chrome://extensions`, find LeetRecall, and click the reload icon. Then close and reopen the LeetCode tab.
 
+**Clearing all data and starting fresh**
+
+Open any LeetCode page, press F12 to open DevTools, go to the Console tab, and run:
+
+```
 chrome.storage.local.clear(() => console.log("cleared"))
+```
 
 
-## Built with
+## Tech
 
-Plain JavaScript, Chrome Extension Manifest V3, and the SM-2 spaced repetition algorithm. No external dependencies.
+Built with plain JavaScript, Chrome Extension Manifest V3, and the SM-2 spaced repetition algorithm. No frameworks, no external dependencies, no servers. Everything runs locally in your browser.

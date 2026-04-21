@@ -27,9 +27,12 @@
 
 ![Extensions page](Assets/install-extensions-page.png)
 
-3. Turn on **Developer Mode** using the toggle in the top right corner
+3. Turn on **Developer Mode** using the toggle in the top right corner as shown below.
+
+![Extensions page](Assets/Developer_mode_extenstion.png)
+
 4. Click **Load unpacked** and select the `leetrecall` folder you just extracted
-5. The LeetRecall icon will appear in your Chrome toolbar
+5. The LeetRecall icon will appear in your Chrome toolbar- click the puzzle piece icon in the toolbar and **Pin LeetRecall** so it's always visible at the top
 
 ![Toolbar icon](Assets/install-icon-toolbar.png)
 
@@ -79,12 +82,25 @@ You're all caught up. Keep solving!
 
 1) Just use LeetCode normally. Open any problem, write your solution, click Submit. LeetRecall handles everything silently in the background.
 
-2) One important thing — if you click the Solutions or Editorial tab on a problem, LeetRecall treats it as a failed attempt even if you submit correctly after. 
+2) One important thing: if you click the Solutions or Editorial tab on a problem, LeetRecall treats it as a failed attempt even if you submit correctly after. 
 The reasoning is simple: if you needed to look at the answer, you don't really know the problem yet. It schedules it for review tomorrow.
+
+**Where to find your problems after solving**
+
+Every problem you solve — whether Accepted or Wrong Answer will immediately appear in the **All Problems** tab in the dashboard. Click View All Problems in the popup to see it right away.
+
+The **Due Today** tab works on a schedule. If you solved a problem correctly today, it will appear in Due Today tomorrow for your first review. 
+If you got a wrong answer or viewed the solution, it also shows up in Due Today tomorrow. Think of Due Today as your review queue for the next day onward — not for the same day you solved it.
+
+So on day one, just solve problems and check All Problems to see them tracked. From day two onward, open Due Today each morning to see what needs reviewing.
+
+![Nothing Due Today Button](Assets/Nothing_Due_Today.png)
 
 **Checking what's due**
 
 Click the LeetRecall icon in your Chrome toolbar. The Due Today tab shows every problem scheduled for today or overdue. Click any problem title to go directly to it on LeetCode.
+
+![Popup](Assets/Plugin_Snapshot.png)
 
 **Full dashboard**
 

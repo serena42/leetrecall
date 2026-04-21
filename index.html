@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>LeetRecall</title>
+  <link rel="stylesheet" href="index.css">
+</head>
+<body>
+
+  <div class="container">
+
+    <!-- Header -->
+    <div class="header">
+      <h1>LeetRecall</h1>
+      <div class="stats-bar">
+        <div class="stat"><span id="total">0</span><label>Total</label></div>
+        <div class="stat"><span id="due-today">0</span><label>Due Today</label></div>
+        <div class="stat"><span id="mastered">0</span><label>Mastered</label></div>
+        <div class="stat"><span id="streak">0</span><label>Day Streak</label></div>
+      </div>
+    </div>
+
+    <!-- Filters -->
+    <div class="controls">
+      <div class="tabs">
+        <button class="tab active" data-filter="all">All</button>
+        <button class="tab" data-filter="due">Due Today</button>
+        <button class="tab" data-filter="mastered">Mastered</button>
+      </div>
+      <input type="text" id="search" placeholder="🔍  Search problems..." />
+    </div>
+
+    <!-- Table -->
+    <div class="table-wrapper">
+      <table>
+        <thead>
+          <tr>
+            <th>S.No</th>
+            <th>Problem Name</th>
+            <th>Next Scheduled</th>
+            <th>Last Submission</th>
+            <th>Acceptance Rate</th>
+            <th>Avg Time</th>
+            <th>Proficiency</th>
+            <th>Status</th>
+          </tr>
+        </thead>
+        <tbody id="problem-table">
+          <tr>
+            <td colspan="8" class="empty-row">No problems tracked yet. Solve a LeetCode problem to get started!</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+  </div>
+
+  <script src="index.js"></script>
+</body>
+</html>

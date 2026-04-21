@@ -1,0 +1,202 @@
+/* ============================================================
+   LeetRecall Dashboard
+   ============================================================ */
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  background: #1a1a1a;
+  color: #e0e0e0;
+  min-height: 100vh;
+  padding: 30px 40px;
+}
+
+.container { max-width: 1100px; margin: 0 auto; }
+
+/* ── Header ───────────────────────────────────────────────── */
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 28px;
+  flex-wrap: wrap;
+  gap: 16px;
+}
+
+h1 {
+  font-size: 32px;
+  font-weight: 800;
+  color: #ffa116;
+  letter-spacing: -0.5px;
+}
+
+/* ── Stats bar ────────────────────────────────────────────── */
+.stats-bar {
+  display: flex;
+  gap: 24px;
+}
+
+.stat {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background: #242424;
+  border: 1px solid #2e2e2e;
+  border-radius: 10px;
+  padding: 10px 20px;
+  min-width: 80px;
+}
+
+.stat span {
+  font-size: 22px;
+  font-weight: 700;
+  color: #ffa116;
+}
+
+.stat label {
+  font-size: 11px;
+  color: #777;
+  margin-top: 2px;
+}
+
+/* ── Controls ─────────────────────────────────────────────── */
+.controls {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 16px;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+
+.tabs { display: flex; gap: 6px; }
+
+.tab {
+  padding: 7px 18px;
+  background: #242424;
+  border: 1px solid #333;
+  border-radius: 20px;
+  color: #aaa;
+  cursor: pointer;
+  font-size: 13px;
+  font-weight: 500;
+  transition: all 0.15s;
+}
+
+.tab:hover { border-color: #ffa116; color: #ffa116; }
+
+.tab.active {
+  background: #ffa116;
+  color: #000;
+  font-weight: 700;
+  border-color: #ffa116;
+}
+
+#search {
+  padding: 8px 16px;
+  background: #242424;
+  border: 1px solid #333;
+  border-radius: 20px;
+  color: #e0e0e0;
+  font-size: 13px;
+  width: 240px;
+  outline: none;
+  transition: border 0.15s;
+}
+
+#search:focus { border-color: #ffa116; }
+#search::placeholder { color: #555; }
+
+/* ── Table ────────────────────────────────────────────────── */
+.table-wrapper {
+  background: #1e1e1e;
+  border: 1px solid #2a2a2a;
+  border-radius: 12px;
+  overflow: hidden;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+thead tr {
+  background: #242424;
+  border-bottom: 1px solid #2e2e2e;
+}
+
+th {
+  padding: 12px 16px;
+  text-align: left;
+  font-size: 12px;
+  font-weight: 600;
+  color: #888;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  white-space: nowrap;
+}
+
+tbody tr {
+  border-bottom: 1px solid #252525;
+  transition: background 0.1s;
+}
+
+tbody tr:last-child { border-bottom: none; }
+tbody tr:hover { background: #242424; }
+
+td {
+  padding: 13px 16px;
+  font-size: 13px;
+  vertical-align: middle;
+}
+
+/* S.No */
+td:first-child { color: #555; font-size: 12px; }
+
+/* Problem name link */
+.prob-link {
+  color: #e0e0e0;
+  text-decoration: none;
+  font-weight: 500;
+}
+.prob-link:hover { color: #ffa116; }
+
+/* Dates */
+.date-cell { color: #aaa; font-size: 12px; }
+.date-due  { color: #ffa116; font-weight: 600; }
+
+/* Acceptance rate */
+.rate-high   { color: #00b8a3; }
+.rate-medium { color: #ffc01e; }
+.rate-low    { color: #ef4743; }
+
+/* Proficiency badges */
+.badge {
+  display: inline-block;
+  padding: 3px 10px;
+  border-radius: 12px;
+  font-size: 11px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.3px;
+}
+
+.badge-novice    { background: #1c3a5a; color: #5b9bd5; }
+.badge-learning  { background: #3a2a00; color: #ffa116; }
+.badge-familiar  { background: #1a3a1a; color: #00b8a3; }
+.badge-proficient{ background: #2a1a3a; color: #c084fc; }
+.badge-mastered  { background: #1a3a2a; color: #4ade80; }
+
+/* Status */
+.status-due      { color: #ffa116; font-weight: 600; font-size: 12px; }
+.status-upcoming { color: #555;    font-size: 12px; }
+.status-mastered { color: #4ade80; font-size: 12px; }
+
+/* Empty state */
+.empty-row {
+  text-align: center;
+  padding: 50px !important;
+  color: #555;
+  font-size: 14px;
+}

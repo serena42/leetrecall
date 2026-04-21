@@ -27,7 +27,7 @@
 
 LeetRecall listens silently to every submission you make on LeetCode. It captures whether you got Accepted or Wrong Answer, how long you took, how many attempts you needed, and whether you peeked at the Solutions or Editorial tab.
 
-![Tracks automatically](Assets/LeetCode_Problem-Extension.png)
+![Tracks automatically](Assets/LeetCode_Problem_Extension.png)
 
 **2. Detects your proficiency per problem**
 
@@ -50,7 +50,7 @@ Your review queue prioritizes problems where proficiency is low. As you improve 
 
 The full dashboard shows every problem you've tracked — next review date, acceptance rate, average solve time, proficiency badge, and status.
 
-![Dashboard on LeetCode](Assets/LeetCode_Problem-Extension.png)
+![Dashboard on LeetCode](Assets/LeetCode_Problem_Extension.png)
 
 2) When you will solve all the problems in "Due Today" tab it would like-> Nothing due today!!
 You're all caught up. Keep solving!

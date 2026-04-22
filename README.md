@@ -70,8 +70,7 @@ The full dashboard shows every problem you've tracked — next review date, acce
 
 ![Dashboard on LeetCode](Assets/LeetCode_Problem_Extension.png)
 
-2) When you will solve all the problems in "Due Today" tab it would like-> Nothing due today!!
-You're all caught up. Keep solving!
+2) When you clear all your due problems for the day, the popup shows a clean slate — nothing pending, you're all caught up.
 
 ![Popup](Assets/Initial_LeetRecall_popup.png)
 
@@ -83,18 +82,17 @@ You're all caught up. Keep solving!
 1) Just use LeetCode normally. Open any problem, write your solution, click Submit. LeetRecall handles everything silently in the background.
 
 2) One important thing: if you click the Solutions or Editorial tab on a problem, LeetRecall treats it as a failed attempt even if you submit correctly after. 
-The reasoning is simple: if you needed to look at the answer, you don't really know the problem yet. It schedules it for review tomorrow.
+The reasoning is simple: if you needed to look at the answer, you don't really know the problem yet. It schedules it for review today itself so you can try again the same day.
 
 **Where to find your problems after solving**
 
-Every problem you solve — whether Accepted or Wrong Answer will immediately appear in the **All Problems** tab in the dashboard. Click View All Problems in the popup to see it right away.
+1) If you got a wrong answer or viewed the solution, it shows up in "Due Today" Tab immediately on same day. You can come back later that evening and it will already be waiting for you.
 
-The **Due Today** tab works on a schedule. If you solved a problem correctly today, it will appear in Due Today tomorrow for your first review. 
-If you got a wrong answer or viewed the solution, it also shows up in Due Today tomorrow. Think of Due Today as your review queue for the next day onward — not for the same day you solved it.
+2) If you solved correctly, it appears in "Due Today" from tomorrow onward for scheduled review.
 
-So on day one, just solve problems and check All Problems to see them tracked. From day two onward, open Due Today each morning to see what needs reviewing.
+So the rule is simple: wrong today means due today. Correct today means due tomorrow.
 
-![Nothing Due Today Button](Assets/Nothing_Due_Today.png)
+![Due Today Tab](Assets/Wrong_Solved_Due_Today.png)
 
 **Checking what's due**
 
@@ -136,7 +134,7 @@ After each submission, LeetRecall gives it a quality score from 0 to 5.
 | 2 | Solved with 3 to 4 attempts |
 | 0 | Wrong answer, viewed solution, or gave up |
 
-Higher score means a longer gap before the next review. Score of 0 means it comes back tomorrow regardless.
+Higher score means a longer gap before the next review. Score of 0 means it shows up in Due Today immediately on same day.
 
 
 

@@ -1,12 +1,10 @@
-// ============================================================
-// scheduler.js — Hybrid SM-2 Engine (Fixed)
-// ============================================================
+// scheduler.js — Hybrid SM-2 Engine
 console.log("LeetRecall: scheduler.js loaded");
 
 /**
  * Compute quality score (0–5) from performance
  */
-// AFTER
+
 function computeQuality(performance) {
   // Viewed solution = automatic 0, no matter what else happened
   if (performance.viewedSolution) return 0;
@@ -30,9 +28,9 @@ function sm2(card, quality) {
     card.easeFactor + 0.1 - (5 - quality) * (0.08 + (5 - quality) * 0.02)
   );
 
-  if (quality < 3) {
+if (quality < 3) {
     card.repetition = 0;
-    card.interval   = 1;
+    card.interval   = 0;
   } else {
     card.repetition += 1;
     if (card.repetition === 1)      card.interval = 1;

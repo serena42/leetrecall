@@ -19,7 +19,7 @@ body {
   flex-direction: column;
 }
 
-/* ── Header ─────────────────────────────────────────────────── */
+/* Header */
 .header {
   display: flex;
   justify-content: space-between;
@@ -44,7 +44,7 @@ h2 {
   font-weight: 700;
 }
 
-/* ── Tabs ───────────────────────────────────────────────────── */
+/*Tabs*/
 #tabs {
   display: flex;
   gap: 0;
@@ -72,7 +72,7 @@ h2 {
   font-weight: 700;
 }
 
-/* ── Content area ───────────────────────────────────────────── */
+/*Content area*/
 #content {
   flex: 1;
   overflow-y: auto;
@@ -144,7 +144,7 @@ h2 {
   cursor: default;
 }
 
-/* ── Empty state ────────────────────────────────────────────── */
+/* Empty state */
 .empty {
   text-align: center;
   padding: 30px 10px;
@@ -153,7 +153,7 @@ h2 {
   line-height: 2;
 }
 
-/* ── Loading ────────────────────────────────────────────────── */
+/*Loading */
 .loading {
   color: #555;
   font-size: 13px;
@@ -161,7 +161,7 @@ h2 {
   text-align: center;
 }
 
-/* ── Footer ─────────────────────────────────────────────────── */
+/*Footer */
 .footer {
   padding: 8px 10px;
   border-top: 1px solid #2a2a2a;

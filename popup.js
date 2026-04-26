@@ -1,25 +1,26 @@
 
 // popup.js — UI Rendering
-
+//HTML elements by their id/class so JS can update them 
 document.addEventListener("DOMContentLoaded", () => {
-  const content  = document.getElementById("content");
-  const badge    = document.getElementById("due-count");
-  const tabs     = document.querySelectorAll(".tab");
-  let   activeTab = "due";
+  const content  = document.getElementById("content"); // the div where problem cards go
+  const badge    = document.getElementById("due-count"); //the due count badge in the header
+  const tabs     = document.querySelectorAll(".tab"); //both tab buttons (Due Today & All Problems)
+  let   activeTab = "due"; //tracks which tab is currently selected, starts as "due"
 
-  // ── Tab switching ──────────────────────────────────────────
+  //Tab switching 
   tabs.forEach(tab => {
-    tab.addEventListener("click", () => {
-      tabs.forEach(t => t.classList.remove("active"));
-      tab.classList.add("active");
-      activeTab = tab.dataset.tab;
+    tab.addEventListener("click", () => { //When tab gets clicked then
+      tabs.forEach(t => t.classList.remove("active")); //clears the orange underline from both tabs(or remove active)
+      tab.classList.add("active"); //gives the orange underline to the one you clicked
+      activeTab = tab.dataset.tab; //reads the data-tab attribute from HTML ("due" or "all Problems") and saves it
       render();
     });
   });
 
-  // ── Main render function ───────────────────────────────────
+  //Main render function
   function render() {
-    chrome.storage.local.get({ problems: [] }, ({ problems }) => {
+    //Reads all saved problems from Chrome's local storage
+    chrome.storage.local.get({ problems: [] }, ({ problems }) => { 
 
       // No problems yet
       if (!problems || problems.length === 0) {
@@ -28,18 +29,23 @@ document.addEventListener("DOMContentLoaded", () => {
             <p>No problems tracked yet.</p>
             <p>Solve a LeetCode problem<br>to get started!</p>
           </div>`;
-        badge.textContent = "0 due";
+        badge.textContent = "0 due"; //if no problems due then by default batch shows 0 due
         return;
       }
 
+      //Filtering due problems & updating badge count
+      
+      //sets time to midnight so we compare dates not times. 
       const today = new Date();
       today.setHours(0, 0, 0, 0);
 
+      // goes through every problem and keeps only the ones where nextReview date is today or earlier.
+      //  This is Due Today list.
       const dueProblems = problems.filter(
         p => new Date(p.nextReview) <= today
       );
 
-      // Update badge
+      // Update badge- updates the orange badge count in the header with the real count.
       badge.textContent = `${dueProblems.length} due`;
 
       // Pick which list to show
@@ -96,7 +102,7 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   }
 
-  // ── Open dashboard ─────────────────────────────────────────
+  //Open dashboard
   document.getElementById("open-dashboard").addEventListener("click", () => {
     chrome.tabs.create({ url: chrome.runtime.getURL("index.html") });
   });

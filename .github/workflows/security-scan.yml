@@ -26,18 +26,14 @@ jobs:
           results_format: sarif
           # publish_results: false  # Uncomment if you want to publish to scorecard.dev
 
-      # ========== ISSUE #2: Semgrep output not in SARIF format ==========
-      # BEFORE: Ran with --json, results not visible in GitHub Security tab
-      # AFTER: Use official Semgrep action which outputs SARIF natively
       - name: Run Semgrep
         uses: returntocorp/semgrep-action@v1
         with:
           config: >-
             p/security-audit
             p/owasp-top-ten
-          args: --sarif --output=semgrep.sarif
-          # Optional: uncomment to fail on findings
-          # args: --sarif --output=semgrep.sarif --error
+          generateSarif: "1"
+          output: semgrep.sarif
 
       # ========== ISSUE #3: Missing secret scanning ==========
       # NEW: Added TruffleHog for hardcoded secrets/API keys

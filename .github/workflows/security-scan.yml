@@ -1,0 +1,79 @@
+name: Security Scan
+
+on:
+  workflow_dispatch:
+  pull_request:
+  push:
+    branches: [ main ]
+
+jobs:
+  security-scan:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      # -----------------------------
+      # 1. OpenSSF Scorecard
+      # -----------------------------
+      - name: Install Scorecard
+        run: |
+          curl -sSL https://github.com/ossf/scorecard/releases/latest/download/scorecard-linux-amd64 \
+            -o scorecard
+          chmod +x scorecard
+
+      - name: Run Scorecard
+        run: |
+          ./scorecard --repo="https://github.com/${{ github.repository }}" --format=json > scorecard.json
+
+      - name: Upload Scorecard results
+        uses: actions/upload-artifact@v4
+        with:
+          name: scorecard-results
+          path: scorecard.json
+
+      # -----------------------------
+      # 2. Semgrep (JavaScript rules)
+      # -----------------------------
+      - name: Install Semgrep
+        run: pip install semgrep
+
+      - name: Run Semgrep
+        run: semgrep --config p/javascript --json > semgrep.json
+
+      - name: Upload Semgrep results
+        uses: actions/upload-artifact@v4
+        with:
+          name: semgrep-results
+          path: semgrep.json
+
+      # -----------------------------
+      # 3. Retire.js (vulnerable JS libs)
+      # -----------------------------
+      - name: Install Retire.js
+        run: npm install -g retire
+
+      - name: Run Retire.js
+        run: retire --outputformat json --outputpath retire.json || true
+
+      - name: Upload Retire.js results
+        uses: actions/upload-artifact@v4
+        with:
+          name: retire-results
+          path: retire.json
+
+      # -----------------------------
+      # 4. npm audit (dependency vulns)
+      # -----------------------------
+      - name: Install dependencies
+        run: npm install || true
+
+      - name: Run npm audit
+        run: npm audit --json > npm-audit.json || true
+
+      - name: Upload npm audit results
+        uses: actions/upload-artifact@v4
+        with:
+          name: npm-audit-results
+          path: npm-audit.json

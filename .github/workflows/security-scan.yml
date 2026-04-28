@@ -33,7 +33,7 @@ jobs:
             p/security-audit
             p/owasp-top-ten
           generateSarif: "1"
-          output: semgrep.sarif
+          output: sarif
 
       # ========== ISSUE #3: Missing secret scanning ==========
       # NEW: Added TruffleHog for hardcoded secrets/API keys

@@ -7,11 +7,15 @@ on:
 
 permissions:
   contents: read
-  security-events: write  # ADDED: Required for SARIF uploads
+  security-events: read  # says need write for Required for SARIF uploads
 
+# ✅ GOOD: Least privilege
 jobs:
   security-scan:
     runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      security-events: write  # Only this job has it
     steps:
       - name: Checkout repository
         uses: actions/checkout@v5

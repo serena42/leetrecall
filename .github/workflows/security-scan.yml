@@ -1,79 +1,51 @@
 name: Security Scan
-
 on:
   workflow_dispatch:
   pull_request:
   push:
-    branches: [ main ]
+    branches: [main]
 
 jobs:
   security-scan:
     runs-on: ubuntu-latest
-
+    permissions:
+      contents: read
+      security-events: write  # Needed for SARIF upload
     steps:
-      - name: Checkout repository
+      - name: Checkout
         uses: actions/checkout@v4
 
-      # -----------------------------
-      # 1. OpenSSF Scorecard
-      # -----------------------------
-      - name: Install Scorecard
-        run: |
-          curl -sSL https://github.com/ossf/scorecard/releases/latest/download/scorecard-linux-amd64 \
-            -o scorecard
-          chmod +x scorecard
-
+      # OpenSSF Scorecard (via official action)
       - name: Run Scorecard
-        run: |
-          ./scorecard --repo="https://github.com/${{ github.repository }}" --format=json > scorecard.json
-
-      - name: Upload Scorecard results
-        uses: actions/upload-artifact@v4
+        uses: ossf/scorecard-action@v2
         with:
-          name: scorecard-results
-          path: scorecard.json
+          results_file: scorecard.sarif
+          results_format: sarif
 
-      # -----------------------------
-      # 2. Semgrep (JavaScript rules)
-      # -----------------------------
-      - name: Install Semgrep
-        run: pip install semgrep
-
+      # Semgrep with SARIF output
       - name: Run Semgrep
-        run: semgrep --config p/javascript --json > semgrep.json
-
-      - name: Upload Semgrep results
-        uses: actions/upload-artifact@v4
+        uses: returntocorp/semgrep-action@v1
         with:
-          name: semgrep-results
-          path: semgrep.json
+          config: >-
+            p/security-audit
+            p/owasp-top-ten
+          generateSarif: true
 
-      # -----------------------------
-      # 3. Retire.js (vulnerable JS libs)
-      # -----------------------------
-      - name: Install Retire.js
-        run: npm install -g retire
-
-      - name: Run Retire.js
-        run: retire --outputformat json --outputpath retire.json || true
-
-      - name: Upload Retire.js results
-        uses: actions/upload-artifact@v4
+      # Secret scanning
+      - name: TruffleHog Scan
+        uses: trufflesecurity/trufflehog@main
         with:
-          name: retire-results
-          path: retire.json
+          path: ./
+          base: ${{ github.event.repository.default_branch }}
 
-      # -----------------------------
-      # 4. npm audit (dependency vulns)
-      # -----------------------------
-      - name: Install dependencies
-        run: npm install || true
+      # Dependency audit (fails on moderate+ vulns)
+      - name: npm audit
+        run: npm ci && npm audit --audit-level=moderate
 
-      - name: Run npm audit
-        run: npm audit --json > npm-audit.json || true
-
-      - name: Upload npm audit results
-        uses: actions/upload-artifact@v4
+      # Upload all SARIF to GitHub Code Scanning
+      - name: Upload SARIF Results
+        uses: github/codeql-action/upload-sarif@v3
+        if: always()
         with:
-          name: npm-audit-results
-          path: npm-audit.json
+          sarif_file: .
+          category: security-scan
